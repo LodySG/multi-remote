@@ -1,0 +1,17 @@
+{
+  "name": "samsungtvremote",
+  "version": "1.0.0",
+  "description": "",
+  "main": "remote.js",
+  "dependencies": {
+    "samsung-remote": "^1.2.4",
+    "socket.io": "^1.3.7",
+    "yamaha-nodejs": "^0.4.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
