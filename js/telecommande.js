@@ -11,7 +11,7 @@ var un = "Digit1";
 var deux = "Digit2";
 var trois = "Digit3";
 var quatre = "Digit4";
-var cinq = "Digit5"
+var cinq = "Digit5";
 var six = "Digit6";
 var sept = "Digit7";
 var huit = "Digit8";
@@ -33,21 +33,31 @@ $(document).ready(function () {
     var socket = io.connect('http://192.168.0.50:9595')
 
     var updateButtons = function() {
-        switch (current_control) {
-          case "samsung":
-            $('*[data-key="RED"]').html("A"); // A ou <i class="fa fa-undo fa-lg"></i>
-            $('*[data-key="GREEN"]').html("B"); // B ou <i class="fa fa-list fa-lg"></i> M
-            $('*[data-key="YELLOW"]').html("C"); // C ou <i class="fa fa-undo fa-lg"></i> ou i <i class="fa fa-bars fa-lg"></i>
-            $('*[data-key="BLUE"]').html("D"); // D ou <i class="fa fa-search fa-lg"></i>
-            break;
-          case "freebox":
-            $('*[data-key="RED"]').html('<i class="fa fa-undo fa-lg"></i>'); // A ou <i class="fa fa-undo fa-lg"></i>
-            $('*[data-key="GREEN"]').html('<i class="fa fa-list fa-lg"></i> M'); // B ou <i class="fa fa-list fa-lg"></i> M
-            $('*[data-key="YELLOW"]').html('i <i class="fa fa-bars fa-lg"></i>'); // C ou <i class="fa fa-undo fa-lg"></i> ou i <i class="fa fa-bars fa-lg"></i>
-            $('*[data-key="BLUE"]').html('<i class="fa fa-search fa-lg"></i>'); // D ou <i class="fa fa-search fa-lg"></i>
-            break;
-          default:
-            break;
+          switch (current_control) {
+            case "samsung":
+              $('*[data-key="RED"]').html("A"); // A ou <i class="fa fa-undo fa-lg"></i>
+              $('*[data-key="GREEN"]').html("B"); // B ou <i class="fa fa-list fa-lg"></i> M
+              $('*[data-key="YELLOW"]').html("C"); // C ou <i class="fa fa-undo fa-lg"></i> ou i <i class="fa fa-bars fa-lg"></i>
+              $('*[data-key="BLUE"]').html("D"); // D ou <i class="fa fa-search fa-lg"></i>
+              $('#CHUP').attr("data-key","CHUP");
+              $('#CHDOWN').attr("data-key","CHDOWN");
+              $('*[data-key="FREEBOX"]').addClass('btn-primary').removeClass('btn-success');
+              $('#free-button').hide();
+              $('*[data-key="TV"]').addClass('btn-success').removeClass('btn-primary');
+              break;
+            case "freebox":
+              $('*[data-key="RED"]').html('<i class="fa fa-undo fa-lg"></i>'); // A ou <i class="fa fa-undo fa-lg"></i>
+              $('*[data-key="GREEN"]').html('<i class="fa fa-list fa-lg"></i> M'); // B ou <i class="fa fa-list fa-lg"></i> M
+              $('*[data-key="YELLOW"]').html('i <i class="fa fa-bars fa-lg"></i>'); // C ou <i class="fa fa-undo fa-lg"></i> ou i <i class="fa fa-bars fa-lg"></i>
+              $('*[data-key="BLUE"]').html('<i class="fa fa-search fa-lg"></i>'); // D ou <i class="fa fa-search fa-lg"></i>
+              $('#CHUP').attr("data-key","PRGM_INC");
+              $('#CHDOWN').attr("data-key","PRGM_DEC");
+              $('*[data-key="FREEBOX"]').addClass('btn-success').removeClass('btn-primary');
+              $('#free-button').show();
+              $('*[data-key="TV"]').addClass('btn-primary').removeClass('btn-success');
+              break;
+            default:
+              break;
         }
     };
 
@@ -56,16 +66,10 @@ $(document).ready(function () {
         switch (input) {
           case 'AV4':
             current_control = "samsung";
-            $('*[data-key="FREEBOX"]').addClass('btn-primary').removeClass('btn-success');
-            $('#free-button').hide();
-            $('*[data-key="TV"]').addClass('btn-success').removeClass('btn-primary');
             updateButtons();
             break;
           case 'HDMI1':
             current_control = "freebox";
-            $('*[data-key="FREEBOX"]').addClass('btn-success').removeClass('btn-primary');
-            $('#free-button').show();
-            $('*[data-key="TV"]').addClass('btn-primary').removeClass('btn-success');
             updateButtons();
             break;
           default:
