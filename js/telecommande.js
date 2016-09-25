@@ -2,6 +2,11 @@ var p = "KeyP";
 var m = "Semicolon";
 var o = "KeyO";
 var l = "KeyL";
+var g = "KeyG";
+var t = "KeyT";
+var f = "KeyF";
+var b = "KeyB";
+var i = "KeyI";
 var un = "Digit1";
 var deux = "Digit2";
 var trois = "Digit3";
@@ -17,46 +22,110 @@ var haut = "ArrowUp";
 var bas = "ArrowDown";
 var gauche = "ArrowLeft";
 var droite = "ArrowRight";
-var cmd = "OSRight";
+var cmdR = "MetaRight";
+var cmdL = "MetaLeft";
 var retour = "Backspace";
+var space = "Space";
+var controlR = "ControlRight";
+var current_control;
 
 $(document).ready(function () {
     var socket = io.connect('http://192.168.0.50:9595')
 
+    var updateButtons = function() {
+        switch (current_control) {
+          case "samsung":
+            $('*[data-key="RED"]').html("A"); // A ou <i class="fa fa-undo fa-lg"></i>
+            $('*[data-key="GREEN"]').html("B"); // B ou <i class="fa fa-list fa-lg"></i> M
+            $('*[data-key="YELLOW"]').html("C"); // C ou <i class="fa fa-undo fa-lg"></i> ou i <i class="fa fa-bars fa-lg"></i>
+            $('*[data-key="BLUE"]').html("D"); // D ou <i class="fa fa-search fa-lg"></i>
+            break;
+          case "freebox":
+            $('*[data-key="RED"]').html('<i class="fa fa-undo fa-lg"></i>'); // A ou <i class="fa fa-undo fa-lg"></i>
+            $('*[data-key="GREEN"]').html('<i class="fa fa-list fa-lg"></i> M'); // B ou <i class="fa fa-list fa-lg"></i> M
+            $('*[data-key="YELLOW"]').html('i <i class="fa fa-bars fa-lg"></i>'); // C ou <i class="fa fa-undo fa-lg"></i> ou i <i class="fa fa-bars fa-lg"></i>
+            $('*[data-key="BLUE"]').html('<i class="fa fa-search fa-lg"></i>'); // D ou <i class="fa fa-search fa-lg"></i>
+            break;
+          default:
+            break;
+        }
+    };
+
+    var switchButton = function(input){
+        
+        switch (input) {
+          case 'AV4':
+            current_control = "samsung";
+            $('*[data-key="FREEBOX"]').addClass('btn-primary').removeClass('btn-success');
+            $('#free-button').hide();
+            $('*[data-key="TV"]').addClass('btn-success').removeClass('btn-primary');
+            updateButtons();
+            break;
+          case 'HDMI1':
+            current_control = "freebox";
+            $('*[data-key="FREEBOX"]').addClass('btn-success').removeClass('btn-primary');
+            $('#free-button').show();
+            $('*[data-key="TV"]').addClass('btn-primary').removeClass('btn-success');
+            updateButtons();
+            break;
+          default:
+            break;
+        }
+        console.log(current_control);
+    };
+
+    socket.on('currentInput', function(message){
+        switchButton(message);
+    });
+
     $(".samsung").each(
         function (id) {
             $(this).on("click", function (event) {
-                socket.emit("samsung", $(this).attr("id"));
+                socket.emit("samsung", "KEY_"+$(this).data("key"));
             });
         });
 
     $(".yamaha").each(
         function (id) {
             $(this).on("click", function (event) {
-                socket.emit("yamaha", $(this).attr("id"));
+                socket.emit("yamaha", $(this).data("key"));
             });
         });
         
     $(".freebox").each(
         function (id) {
             $(this).on("click", function (event) {
-                socket.emit("freebox", $(this).attr("id"));
+                socket.emit("freebox", $(this).data("key"));
+            });
+        });
+
+    $(".tvcontrol").each(
+        function (id) {
+            $(this).on("click", function (event) {
+              if(current_control == "samsung"){
+                  socket.emit(current_control, "KEY_"+$(this).data("key"));
+              }
+              if(current_control == "freebox"){
+                  socket.emit(current_control, $(this).data("key"));
+              }
             });
         });
       
     $(document).keydown(function(event) {
       
-      var device = $(".active").last().attr("id");
+      //var device = $(".active").last().data("key");
       
       //console.log(event.keyCode);
       //console.log(event);
       //console.log(event.originalEvent.code);
       
       var code = event.originalEvent.code;
-      console.log(code);
+
       
-      if(device == "TV")
-      {
+      console.log(code);
+      console.log(event);
+      //if(device == "TV")
+      //{
           switch(code)
           {
               case p:
@@ -104,7 +173,9 @@ $(document).ready(function () {
               case enter:
                 socket.emit("samsung", "KEY_ENTER");
                 break;
-              case cmd:
+              case controlR:
+              case cmdR:
+              case cmdL:
                 socket.emit("samsung", "KEY_SOURCE");
                 break;
               case haut:
@@ -122,8 +193,25 @@ $(document).ready(function () {
               case retour:
                 socket.emit("samsung", "KEY_RETURN");
                 break;  
-               
-              
+              case space:
+                socket.emit("yamaha", "MUTE");
+                break;
+              case g:
+                socket.emit("yamaha", "GAME");
+                break;
+              case t:
+                socket.emit("yamaha", "TV");
+                break;
+              case f:
+                socket.emit("yamaha", "FREEBOX");
+                break;
+              case b:
+                socket.emit("yamaha", "BLUETOOTH");
+                break;
+              case i:
+                socket.emit("samsung", "KEY_INFO");
+                break;
+     /*         
           }
       }
       else if(device == "HomeCinema")
@@ -143,15 +231,19 @@ $(document).ready(function () {
                 socket.emit("yamaha", "VOLDOWN");
                 break;
               case un:
+              case g:
                 socket.emit("yamaha", "GAME");
                 break;
               case deux:
+              case t:
                 socket.emit("yamaha", "TV");
                 break;
               case trois:
+              case f:
                 socket.emit("yamaha", "FREEBOX");
                 break;
               case quatre:
+              case b:
                 socket.emit("yamaha", "BLUETOOTH");
                 break;
               case cinq:
@@ -172,9 +264,11 @@ $(document).ready(function () {
               case zero:
                 //socket.emit("yamaha", "KEY_0");
                 break;
-              case espace:
+              case space:
+                socket.emit("yamaha", "MUTE");
                 break;
           }
+          */
       }
       event.preventDefault();
     });

@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" />
     <title>Telecommande</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-    crossorigin="anonymous">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css">
     <link href="/css/telecommande.css" rel="stylesheet" />
     <link rel="shortcut icon" href="images/telecommande.png">
     <link rel="apple-touch-icon" href="images/telecommande.png" />
@@ -15,331 +15,282 @@
 
 <body>
     <div class="container">
-        <ul class="nav nav-pills nav-justified">
-            <li class="active"><a href="#TV" data-toggle="tab">TV</a></li>
-            <li><a href="#HomeCinema" data-toggle="tab">Home Cinema</a></li>
+        <!--<ul class="nav nav-pills nav-justified">
+            <li class="active"><a href="#TV" data-toggle="tab">TV et HomeCinema</a></li>
             <li><a href="#FreeboxTV" data-toggle="tab">Freebox</a></li>
-        </ul>
+        </ul>-->
         <br>
         <div class="tab-content">
-            <div class="tab-pane active fade in" id="TV">
-                <div class="row">
-                    <div class="col-xs-4 col-xs-offset-8">
-                        <button type="button" class="samsung btn btn-danger btn-lg btn-block" id="KEY_POWEROFF"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></button>
+            <div class="row hidden-xs">
+                <div class="col-xs-4">
+                    <button type="button" class="freebox btn btn-danger btn-lg btn-block" data-key="POWER">
+                        Freebox <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="col-xs-4">
+                    <button type="button" class="yamaha btn btn-danger btn-lg btn-block" data-key="POWER">Home Cinema <span class="glyphicon glyphicon-off" aria-hidden="true"></span></button>
+                </div>
+                <div class="col-xs-4">
+                    <button type="button" class="samsung btn btn-danger btn-lg btn-block" data-key="KEY_POWEROFF">TV <span class="glyphicon glyphicon-off" aria-hidden="true"></span></button>
+                </div>
+            </div>
+            <div class="row visible-xs-block">
+                <div class="col-xs-4">
+                    <button type="button" class="freebox btn btn-danger btn-lg btn-block" data-key="POWER">Free <span class="glyphicon glyphicon-off" aria-hidden="true"></span></button>
+                </div>
+                <div class="col-xs-4">
+                    <button type="button" class="yamaha btn btn-danger btn-lg btn-block" data-key="POWER">HC <span class="glyphicon glyphicon-off" aria-hidden="true"></span></button>
+                </div>
+                <div class="col-xs-4">
+                    <button type="button" class="samsung btn btn-danger btn-lg btn-block" data-key="KEY_POWEROFF">TV <span class="glyphicon glyphicon-off" aria-hidden="true"></span></button>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="row hidden-xs">
+                <div class="col-xs-3">
+                    <button type="button" class="yamaha btn btn-primary btn-lg btn-block" data-key="GAME">GAME <i class="fa fa-gamepad fa-lg"></i></button>
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" class="yamaha btn btn-primary btn-lg btn-block" data-key="TV">TV <i class="fa fa-television fa-lg"></i></button>
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" class="yamaha btn btn-primary btn-lg btn-block" data-key="FREEBOX">FREEBOX <i class="fa fa-hdd-o fa-lg"></i></button>
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" class="yamaha btn btn-primary btn-lg btn-block" data-key="BLUETOOTH">BLUETOOTH <i class="fa fa-bluetooth fa-lg"></i></i></button>
+                </div>
+            </div>
+            <div class="row visible-xs-block">
+                <div class="col-xs-3">
+                    <button type="button" class="yamaha btn btn-primary btn-lg btn-block" data-key="GAME"><i class="fa fa-gamepad fa-lg"></i></button>
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" class="yamaha btn btn-primary btn-lg btn-block" data-key="TV"><i class="fa fa-television fa-lg"></i></button>
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" class="yamaha btn btn-primary btn-lg btn-block" data-key="FREEBOX">FREE <i class="fa fa-hdd-o fa-lg"></i></button>
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" class="yamaha btn btn-primary btn-lg btn-block" data-key="BLUETOOTH"><i class="fa fa-bluetooth fa-lg"></i></i></button>
+                </div>
+            </div>
+            <br>
+            <div class="row hidden-xs">
+                <div class="col-xs-3">
+                    <button type="button" class="yamaha btn btn-primary btn-lg btn-block" data-key="HDMI1">HDMI1</button>
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" class="yamaha btn btn-primary btn-lg btn-block" data-key="HDMI2">HDMI2</button>
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" class="yamaha btn btn-primary btn-lg btn-block" data-key="HDMI3">HDMI3</button>
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" class="yamaha btn btn-primary btn-lg btn-block" data-key="HDMI4">HDMI4</button>
+                </div>
+            </div>
+            <div class="row visible-xs-block">
+                <div class="col-xs-3">
+                    <button type="button" class="yamaha btn btn-primary btn-lg btn-block" data-key="HDMI1">HD1</button>
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" class="yamaha btn btn-primary btn-lg btn-block" data-key="HDMI2">HD2</button>
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" class="yamaha btn btn-primary btn-lg btn-block" data-key="HDMI3">HD3</button>
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" class="yamaha btn btn-primary btn-lg btn-block" data-key="HDMI4">HD4</button>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-xs-4">
+                    <button class="tvcontrol btn btn-default btn-lg btn-block" data-key="1">1</button>
+                </div>
+                <div class="col-xs-4">
+                    <button class="tvcontrol btn btn-default btn-lg btn-block" data-key="2">2</button>
+                </div>
+                <div class="col-xs-4">
+                    <button class="tvcontrol btn btn-default btn-lg btn-block" data-key="3">3</button>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xs-4">
+                    <button class="tvcontrol btn btn-default btn-lg btn-block" data-key="4">4</button>
+                </div>
+                <div class="col-xs-4">
+                    <button class="tvcontrol btn btn-default btn-lg btn-block" data-key="5">5</button>
+                </div>
+                <div class="col-xs-4">
+                    <button class="tvcontrol btn btn-default btn-lg btn-block" data-key="6">6</button>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xs-4">
+                    <button class="tvcontrol btn btn-default btn-lg btn-block" data-key="7">7</button>
+                </div>
+                <div class="col-xs-4">
+                    <button class="tvcontrol btn btn-default btn-lg btn-block" data-key="8">8</button>
+                </div>
+                <div class="col-xs-4">
+                    <button class="tvcontrol btn btn-default btn-lg btn-block" data-key="9">9</button>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xs-4 col-xs-offset-4">
+                    <button class="tvcontrol btn btn-default btn-lg btn-block" data-key="0">0</button>
+                </div>
+            </div>
+            <br>
+            <div class="row hidden-xs">
+                <div class="col-xs-5">
+                    <button data-key="SOURCE" class="tvcontrol btn btn-primary btn-lg btn-block">SOURCE <i class="fa fa-television fa-lg" aria-hidden="true"></i></button>
+                </div>
+                <div class="col-xs-offset-2 col-xs-5">
+                    <button data-key="MENU" class="tvcontrol btn btn-primary btn-lg btn-block">MENU <i class="fa fa-align-justify fa-lg"></i></button>
+                </div>
+            </div>
+            <div class="row visible-xs-block">
+                <div class="col-xs-5">
+                    <button data-key="SOURCE" class="tvcontrol btn btn-primary btn-lg btn-block"><i class="fa fa-television fa-lg" aria-hidden="true"></i></button>
+                </div>
+                <div class="col-xs-offset-2 col-xs-5">
+                    <button data-key="MENU" class="tvcontrol btn btn-primary btn-lg btn-block"><i class="fa fa-align-justify fa-lg"></i></button>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xs-offset-4 col-xs-4">
+                    <button data-key="UP" class="tvcontrol btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></button>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xs-4">
+                    <button data-key="LEFT" class="tvcontrol btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></button>
+                </div>
+                <div class="col-xs-4">
+                    <button data-key="ENTER" class="tvcontrol btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>
+                </div>
+                <div class="col-xs-4">
+                    <button data-key="RIGHT" class="tvcontrol btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></button>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xs-offset-4 col-xs-4">
+                    <button data-key="DOWN" class="tvcontrol btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xs-3">
+                    <button type="button" class="tvcontrol btn btn-danger btn-lg btn-block" data-key="RED">A</button>
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" class="tvcontrol btn btn-success btn-lg btn-block" data-key="GREEN">B</button>
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" class="tvcontrol btn btn-warning btn-lg btn-block" data-key="YELLOW">C</button>
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" class="tvcontrol btn btn-primary btn-lg btn-block" data-key="BLUE">D</button>
+                </div>
+            </div>
+            <br>
+            <div class="row hidden-xs">
+                <div class="col-xs-5">
+                    <button data-key="INFO" class="tvcontrol btn btn-primary btn-lg btn-block">INFO <i class="fa fa-info fa-lg"></i></button>
+                </div>
+                <div class="col-xs-offset-2 col-xs-5">
+                    <button data-key="EXIT" class="tvcontrol btn btn-primary btn-lg btn-block">EXIT <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="row visible-xs-block">
+                <div class="col-xs-5">
+                    <button data-key="INFO" class="tvcontrol btn btn-primary btn-lg btn-block"><i class="fa fa-info fa-lg"></i></button>
+                </div>
+                <div class="col-xs-offset-2 col-xs-5">
+                    <button data-key="EXIT" class="tvcontrol btn btn-primary btn-lg btn-block"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <br>
+            <div id="free-button" class="row" style="display: none;">
+                <div class="col-xs-offset-4 col-xs-4">
+                    <img class="freebox img-responsive" src="/img/free.svg" data-key='home'>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="btn-group-vertical btn-block" role="group" aria-label="">
+                        <button class="yamaha btn btn-default btn-lg btn-block" data-key="VOLUP"><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span></button>
+                        <button class="yamaha btn btn-default btn-lg btn-block" data-key="VOLDOWN"><span class="glyphicon glyphicon-volume-down" aria-hidden="true"></span></button>
                     </div>
                 </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-4">
-                        <button class="samsung btn btn-default btn-lg btn-block" id="KEY_1">1</button>
-                    </div>
-                    <div class="col-xs-4">
-                        <button class="samsung btn btn-default btn-lg btn-block" id="KEY_2">2</button>
-                    </div>
-                    <div class="col-xs-4">
-                        <button class="samsung btn btn-default btn-lg btn-block" id="KEY_3">3</button>
-                    </div>
+                <div class="col-xs-4">
+                    <button class="yamaha btn btn-default btn-lg btn-block" data-key="MUTE"><span class="glyphicon glyphicon-volume-off" aria-hidden="true"></span></button>
                 </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-4">
-                        <button class="samsung btn btn-default btn-lg btn-block" id="KEY_4">4</button>
-                    </div>
-                    <div class="col-xs-4">
-                        <button class="samsung btn btn-default btn-lg btn-block" id="KEY_5">5</button>
-                    </div>
-                    <div class="col-xs-4">
-                        <button class="samsung btn btn-default btn-lg btn-block" id="KEY_6">6</button>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-4">
-                        <button class="samsung btn btn-default btn-lg btn-block" id="KEY_7">7</button>
-                    </div>
-                    <div class="col-xs-4">
-                        <button class="samsung btn btn-default btn-lg btn-block" id="KEY_8">8</button>
-                    </div>
-                    <div class="col-xs-4">
-                        <button class="samsung btn btn-default btn-lg btn-block" id="KEY_9">9</button>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-4 col-xs-offset-4">
-                        <button class="samsung btn btn-default btn-lg btn-block" id="KEY_0">0</button>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-offset-1 col-xs-4">
-                        <button id="KEY_SOURCE" class="samsung btn btn-primary btn-lg btn-block">SOURCE</button>
-                    </div>
-                    <div class="col-xs-offset-2 col-xs-4">
-                        <button id="KEY_MENU" class="samsung btn btn-primary btn-lg btn-block">MENU <span class="glyphicon glyphicon-align-justify"></span></button>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-offset-4 col-xs-4">
-                        <button id="KEY_UP" class="samsung btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></button>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-4">
-                        <button id="KEY_LEFT" class="samsung btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></button>
-                    </div>
-                    <div class="col-xs-4">
-                        <button id="KEY_ENTER" class="samsung btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>
-                    </div>
-                    <div class="col-xs-4">
-                        <button id="KEY_RIGHT" class="samsung btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></button>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-offset-4 col-xs-4">
-                        <button id="KEY_DOWN" class="samsung btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-4">
-                        <div class="btn-group-vertical btn-block" role="group" aria-label="">
-                            <button id="KEY_VOLUP" class="samsung btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span></button>
-                            <button id="KEY_VOLDOWN" class="samsung btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-volume-down" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-                    <div class="col-xs-4">
-                        <button id="KEY_MUTE" class="samsung btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-volume-off" aria-hidden="true"></span></button>
-                    </div>
-                    <div class="col-xs-4">
-                        <div class="btn-group-vertical btn-block" role="group" aria-label="">
-                            <button id="KEY_CHUP" class="samsung btn btn-default btn-lg btn-block">CH <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-                            <button id="KEY_CHDOWN" class="samsung btn btn-default btn-lg btn-block">CH <span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-offset-3 col-xs-1">
-                        <button id="KEY_REWIND" class="samsung btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-fast-backward" aria-hidden="true"></span></button>
-                    </div>
-                    <div class="col-xs-2">
-                        <button id="KEY_PLAY" class="samsung btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
-                    </div>
-                    <div class="col-xs-1">
-                        <button id="KEY_PAUSE" class="samsung btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-pause" aria-hidden="true"></span></button>
-                    </div>
-                    <div class="col-xs-1">
-                        <button id="KEY_STOP" class="samsung btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-stop" aria-hidden="true"></span></button>
-                    </div>
-                    <div class="col-xs-1">
-                        <button id="KEY_FF" class="samsung btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-fast-forward" aria-hidden="true"></span></button>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-4">
-                        <button id="KEY_TOOLS" class="samsung btn btn-primary btn-lg btn-block">TOOLS</button>
-                    </div>
-                    <div class="col-xs-4">
-                        <button id="KEY_AD" class="samsung btn btn-primary btn-lg btn-block">AD/SUBTL</button>
-                    </div>
-                    <div class="col-xs-4">
-                        <button id="KEY_RETURN" class="samsung btn btn-primary btn-lg btn-block">RETURN</button>
+                <div class="col-xs-4">
+                    <div class="btn-group-vertical btn-block" role="group" aria-label="">
+                        <button data-key="CHUP" class="tvcontrol btn btn-default btn-lg btn-block">CH <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                        <button data-key="CHDOWN" class="tvcontrol btn btn-default btn-lg btn-block">CH <span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade in" id="HomeCinema">
-                <div class="row">
-                    <div class="col-xs-4 col-xs-offset-8">
-                        <button type="button" class="yamaha btn btn-danger btn-lg btn-block" id="POWER"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></button>
+            <br>
+            <div class="row">
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <button type="button" data-key="REWIND" class="tvcontrol btn btn-default btn-lg"><span class="glyphicon glyphicon-fast-backward" aria-hidden="true"></span></button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" data-key="PLAY" class="tvcontrol btn btn-default btn-lg"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" data-key="PAUSE" class="tvcontrol btn btn-default btn-lg"><span class="glyphicon glyphicon-pause" aria-hidden="true"></span></button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" data-key="STOP" class="tvcontrol btn btn-default btn-lg"><span class="glyphicon glyphicon-stop" aria-hidden="true"></span></button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" data-key="FF" class="tvcontrol btn btn-default btn-lg"><span class="glyphicon glyphicon-fast-forward" aria-hidden="true"></span></button>
                     </div>
                 </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-3">
-                        <button type="button" class="yamaha btn btn-primary btn-lg btn-block" id="GAME">GAME</button>
-                    </div>
-                    <div class="col-xs-3">
-                        <button type="button" class="yamaha btn btn-primary btn-lg btn-block" id="TV">TV</button>
-                    </div>
-                    <div class="col-xs-3">
-                        <button type="button" class="yamaha btn btn-primary btn-lg btn-block" id="FREEBOX">FREEBOX</button>
-                    </div>
-                    <div class="col-xs-3">
-                        <button type="button" class="yamaha btn btn-primary btn-lg btn-block" id="BLUETOOTH">BLUETOOTH</button>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-3">
-                        <button type="button" class="yamaha btn btn-primary btn-lg btn-block" id="HDMI1">HDMI1</button>
-                    </div>
-                    <div class="col-xs-3">
-                        <button type="button" class="yamaha btn btn-primary btn-lg btn-block" id="HDMI2">HDMI2</button>
-                    </div>
-                    <div class="col-xs-3">
-                        <button type="button" class="yamaha btn btn-primary btn-lg btn-block" id="HDMI3">HDMI3</button>
-                    </div>
-                    <div class="col-xs-3">
-                        <button type="button" class="yamaha btn btn-primary btn-lg btn-block" id="HDMI4">HDMI4</button>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-offset-1 col-xs-4">
-                        <button class="yamaha btn btn-default btn-lg btn-block" id="MUTE"><span class="glyphicon glyphicon-volume-off" aria-hidden="true"></span></button>
-                    </div>
-                    <div class="col-xs-offset-2 col-xs-4">
-                        <div class="btn-group-vertical btn-block" role="group" aria-label="">
-                            <button class="yamaha btn btn-default btn-lg btn-block" id="VOLUP"><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span></button>
-                            <button class="yamaha btn btn-default btn-lg btn-block" id="VOLDOWN"><span class="glyphicon glyphicon-volume-down" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-            <div class="tab-pane fade in" id="FreeboxTV">
-                <div class="row">
-                    <div class="col-xs-4 col-xs-offset-8">
-                        <button type="button" class="freebox btn btn-danger btn-lg btn-block" id="power"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></button>
-                    </div>
+            <br>
+            <div class="row hidden-xs">
+                <div class="col-xs-4">
+                    <button data-key="TOOLS" class="tvcontrol btn btn-primary btn-lg btn-block">TOOLS <i class="fa fa-wrench fa-lg"></i></button>
                 </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-4">
-                        <button class="freebox btn btn-default btn-lg btn-block" id="1">1</button>
-                    </div>
-                    <div class="col-xs-4">
-                        <button class="freebox btn btn-default btn-lg btn-block" id="2">2</button>
-                    </div>
-                    <div class="col-xs-4">
-                        <button class="freebox btn btn-default btn-lg btn-block" id="3">3</button>
-                    </div>
+                <div class="col-xs-4">
+                    <button data-key="AD" class="tvcontrol btn btn-primary btn-lg btn-block">AD/SUBTL</button>
                 </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-4">
-                        <button class="freebox btn btn-default btn-lg btn-block" id="4">4</button>
-                    </div>
-                    <div class="col-xs-4">
-                        <button class="freebox btn btn-default btn-lg btn-block" id="5">5</button>
-                    </div>
-                    <div class="col-xs-4">
-                        <button class="freebox btn btn-default btn-lg btn-block" id="6">6</button>
-                    </div>
+                <div class="col-xs-4">
+                    <button data-key="RETURN" class="tvcontrol btn btn-primary btn-lg btn-block">RETURN <i class="fa fa-undo fa-lg" aria-hidden="true"></i></button>
                 </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-4">
-                        <button class="freebox btn btn-default btn-lg btn-block" id="7">7</button>
-                    </div>
-                    <div class="col-xs-4">
-                        <button class="freebox btn btn-default btn-lg btn-block" id="8">8</button>
-                    </div>
-                    <div class="col-xs-4">
-                        <button class="freebox btn btn-default btn-lg btn-block" id="9">9</button>
-                    </div>
+            </div>
+            <div class="row visible-xs-block">
+                <div class="col-xs-4">
+                    <button data-key="TOOLS" class="tvcontrol btn btn-primary btn-lg btn-block"><i class="fa fa-wrench fa-lg"></i></button>
                 </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-4 col-xs-offset-4">
-                        <button class="freebox btn btn-default btn-lg btn-block" id="0">0</button>
-                    </div>
+                <div class="col-xs-4">
+                    <button data-key="AD" class="tvcontrol btn btn-primary btn-lg btn-block">AD/SUBTL</button>
                 </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-offset-1 col-xs-4">
-                        <button id="red" class="freebox btn btn-primary btn-lg btn-block">SOURCE</button>
-                    </div>
-                    <div class="col-xs-offset-2 col-xs-4">
-                        <button id="blue" class="freebox btn btn-primary btn-lg btn-block">MENU <span class="glyphicon glyphicon-align-justify"></span></button>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-offset-4 col-xs-4">
-                        <button id="up" class="freebox btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></button>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-4">
-                        <button id="left" class="freebox btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></button>
-                    </div>
-                    <div class="col-xs-4">
-                        <button id="ok" class="freebox btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>
-                    </div>
-                    <div class="col-xs-4">
-                        <button id="right" class="freebox btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></button>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-offset-4 col-xs-4">
-                        <button id="down" class="freebox btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-offset-1 col-xs-4">
-                        <button id="green" class="freebox btn btn-primary btn-lg btn-block">SOURCE</button>
-                    </div>
-                    <div class="col-xs-offset-2 col-xs-4">
-                        <button id="yellow" class="freebox btn btn-primary btn-lg btn-block">MENU <span class="glyphicon glyphicon-align-justify"></span></button>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-4">
-                        <div class="btn-group-vertical btn-block" role="group" aria-label="">
-                            <button id="vol_inc" class="freebox btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span></button>
-                            <button id="vol_dec" class="freebox btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-volume-down" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-                    <div class="col-xs-4">
-                        <button id="mute" class="freebox btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-volume-off" aria-hidden="true"></span></button>
-                    </div>
-                    <div class="col-xs-4">
-                        <div class="btn-group-vertical btn-block" role="group" aria-label="">
-                            <button id="prgm_inc" class="freebox btn btn-default btn-lg btn-block">CH <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-                            <button id="prgm_dec" class="freebox btn btn-default btn-lg btn-block">CH <span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-offset-4 col-xs-4">
-                        <button id="home" class="freebox btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-volume-off" aria-hidden="true"></span></button>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-xs-offset-3 col-xs-1">
-                        <button id="KEY_REWIND" class="freebox btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-fast-backward" aria-hidden="true"></span></button>
-                    </div>
-                    <div class="col-xs-2">
-                        <button id="KEY_PLAY" class="freebox btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
-                    </div>
-                    <div class="col-xs-1">
-                        <button id="KEY_PAUSE" class="freebox btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-pause" aria-hidden="true"></span></button>
-                    </div>
-                    <div class="col-xs-1">
-                        <button id="KEY_STOP" class="freebox btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-stop" aria-hidden="true"></span></button>
-                    </div>
-                    <div class="col-xs-1">
-                        <button id="KEY_FF" class="freebox btn btn-default btn-lg btn-block"><span class="glyphicon glyphicon-fast-forward" aria-hidden="true"></span></button>
-                    </div>
+                <div class="col-xs-4">
+                    <button data-key="RETURN" class="tvcontrol btn btn-primary btn-lg btn-block"><i class="fa fa-undo fa-lg" aria-hidden="true"></i></button>
                 </div>
             </div>
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-    crossorigin="anonymous"></script>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="http://192.168.0.50:9595/socket.io/socket.io.js"></script>
     <script src="/js/telecommande.js"></script>
 </body>

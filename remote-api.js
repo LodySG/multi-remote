@@ -1,31 +1,23 @@
 var http = require('http');
 var fs = require('fs');
+var request = require('request');
 var SamsungRemote = require('samsung-remote');
 var YamahaAPI = require("yamaha-nodejs");
 var yamaha_unitvol = 10;
 var last_action_date = Date.now();
 var get_info = true;
-
+var port = 9595;
 var remote_yamaha = new YamahaAPI('192.168.0.41');
 var remote_samsung = new SamsungRemote({
     ip: '192.168.0.45' // required: IP address of your Samsung Smart TV 
 });
+var freebox_url = 'http://hd1.freebox.fr/pub/remote_control';
+var freebox_remote_code = '47799590';
 
 var yamaha_volume;
 var yamaha_isMuted;
 var yamaha_isOn;
 var yamaha_currentInput;
-
-var getInfo = function(){
-    remote_yamaha.getBasicInfo().done(function(basicInfo){
-        yamaha_volume = basicInfo.getVolume();
-        yamaha_isMuted = basicInfo.isMuted();
-        yamaha_isOn = basicInfo.isOn();
-        yamaha_currentInput = basicInfo.getCurrentInput();
-    })
-};
-
-getInfo();
 
 // Chargement du fichier index.html affiché au client
 var server = http.createServer(function(req, res) {
@@ -37,16 +29,34 @@ var server = http.createServer(function(req, res) {
 
 var io = require('socket.io').listen(server);
 
-io.sockets.on('connection', function (socket, pseudo) {
+var getInfo = () => {
+    remote_yamaha.getBasicInfo().done((basicInfo) => {
+        yamaha_volume = basicInfo.getVolume();
+        yamaha_isMuted = basicInfo.isMuted();
+        yamaha_isOn = basicInfo.isOn();
+        yamaha_currentInput = basicInfo.getCurrentInput();
+        io.emit('currentInput', yamaha_currentInput);
+    });
+};
+
+getInfo();
+
+io.sockets.on('connection', (socket, pseudo) => {
     
+    socket.emit('currentInput', yamaha_currentInput);
+
     socket.on('samsung', function (message) {
         remote_samsung.send(message, function callback(err) {
             if (err) {
                 throw new Error(err);
             } else {
-                console.log(message) 
+                //console.log(message);
             }
         });
+    });
+
+    socket.on('freebox', (key) => {
+        request(freebox_url,{qs: {code: freebox_remote_code, key: key}});
     });
     
     socket.on('yamaha', function (message) {
@@ -65,38 +75,38 @@ io.sockets.on('connection', function (socket, pseudo) {
             case "VOLUP":
                 yamaha_volume = yamaha_volume+yamaha_unitvol;
                 remote_yamaha.setVolumeTo(yamaha_volume);
-                console.log(message);
+                ////console.log(message);
                 break;
             case "VOLDOWN":
                 yamaha_volume = yamaha_volume-yamaha_unitvol;
                 remote_yamaha.setVolumeTo(yamaha_volume);
-                console.log(message); 
+                ////console.log(message); 
                 break;
             case "GAME":
 	        case "HDMI2":
                 remote_yamaha.setMainInputTo("HDMI2");
-                console.log(message);
+                ////console.log(message);
                 break;
             case "TV":
                 remote_yamaha.setMainInputTo("AV4");
-                console.log(message); 
+                ////console.log(message); 
                 break;    
             case "FREEBOX":
 	        case "HDMI1":
                 remote_yamaha.setMainInputTo("HDMI1");
-                console.log(message);
+                ////console.log(message);
                 break;
             case "BLUETOOTH":
                 remote_yamaha.setMainInputTo("AV2");
-                console.log(message);
+                ////console.log(message);
                 break;
             case "HDMI3":
                 remote_yamaha.setMainInputTo("HDMI3");
-                console.log(message);
+                //console.log(message);
                 break;
 	        case "HDMI4":
                 remote_yamaha.setMainInputTo("HDMI4");
-                console.log(message);
+                //console.log(message);
                 break;
             case "MUTE":
                 if(yamaha_isMuted){
@@ -106,7 +116,7 @@ io.sockets.on('connection', function (socket, pseudo) {
                     remote_yamaha.SendXMLToReceiver('<YAMAHA_AV cmd="PUT"><Main_Zone><Volume><Mute>On</Mute></Volume></Main_Zone></YAMAHA_AV>');
                     yamaha_isMuted = true;
                 }
-                console.log(message);
+                //console.log(message);
             default :
                 break;
         }
@@ -127,7 +137,7 @@ setInterval(function(){
         get_info = false;
         //console.log("info get");
     }
-},1000)
+},1000);
 
-server.listen(9595);
+server.listen(port);
 
