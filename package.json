@@ -1,10 +1,12 @@
 {
   "name": "samsungtvremote",
   "version": "1.0.0",
-  "description": "",
-  "main": "remote.js",
+  "description": "Home Remote Control",
+  "repository": "LodySG/multi-remote",
+  "main": "remote-api.js",
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "express": "^4.14.0",
     "font-awesome": "^4.6.3",
     "jquery": "^3.1.1",
     "request": "^2.75.0",
@@ -14,8 +16,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node remote-api.js"
   },
-  "author": "",
+  "author": "LodySG",
   "license": "ISC"
 }

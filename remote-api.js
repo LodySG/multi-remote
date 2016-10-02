@@ -1,5 +1,8 @@
-var http = require('http');
-var fs = require('fs');
+var express = require('express');
+var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
 var request = require('request');
 var SamsungRemote = require('samsung-remote');
 var YamahaAPI = require("yamaha-nodejs");
@@ -19,15 +22,14 @@ var yamaha_isMuted;
 var yamaha_isOn;
 var yamaha_currentInput;
 
-// Chargement du fichier index.html affiché au client
-var server = http.createServer(function(req, res) {
-    fs.readFile('./index.html', 'utf-8', function(error, content) {
-        res.writeHead(200, {"Content-Type": "text/html"});
-        res.end(content);
-    });
-});
+app.use(express.static('/css'));
+app.use(express.static('/images'));
+app.use(express.static('/js'));
+app.use(express.static('/nodes_modules'));
 
-var io = require('socket.io').listen(server);
+app.get('/', function (req, res) {
+  res.sendfile(__dirname + '/index.html');
+});
 
 var getInfo = () => {
     remote_yamaha.getBasicInfo().done((basicInfo) => {
@@ -139,5 +141,4 @@ setInterval(function(){
     }
 },1000);
 
-server.listen(port);
-
+server.listen(port, () => console.log("app launched"));
