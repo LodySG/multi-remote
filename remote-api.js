@@ -1,4 +1,5 @@
 var express = require('express');
+var path = require('path');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
@@ -22,13 +23,11 @@ var yamaha_isMuted;
 var yamaha_isOn;
 var yamaha_currentInput;
 
-app.use(express.static('/css'));
-app.use(express.static('/images'));
-app.use(express.static('/js'));
-app.use(express.static('/nodes_modules'));
+app.engine('html', require('ejs').renderFile);
+app.use(express.static(__dirname));
 
 app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/index.html');
+  res.render(__dirname + '/index.html');
 });
 
 var getInfo = () => {
